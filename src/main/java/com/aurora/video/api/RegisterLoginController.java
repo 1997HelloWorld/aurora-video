@@ -4,25 +4,31 @@ import com.aurora.video.pojo.Users;
 import com.aurora.video.service.impl.UserServiceImpl;
 import com.aurora.video.utils.BackInfo;
 import com.aurora.video.utils.MD5;
+import com.aurora.video.utils.RedisOperator;
+import com.aurora.video.vo.UsersVo;
 import com.google.gson.Gson;
+import io.lettuce.core.cluster.pubsub.RedisClusterPubSubAdapter;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import sun.security.util.Password;
+
+import java.util.UUID;
 
 @RestController
 @Api(value = "这是用户注册和登录的接口", tags = {"用户登录注册的controller"})
-public class RegisterLoginController {
+public class RegisterLoginController extends BasicController{
     @Autowired()
     private BackInfo info;
     @Autowired
     private UserServiceImpl userService;
     @Autowired
     private Gson gson;
+
 
     @ApiOperation(value = "用户注册", notes = "注册接口")
     @PostMapping(value = "/register", produces = "text/plain;charset=UTF-8")
@@ -45,9 +51,13 @@ public class RegisterLoginController {
             users.setNickname(users.getUsername());
             userService.saveUser(users);
             info.setMsg("注册成功");
+
+            //loginUser是database中的数据
             Users loginUser = userService.queryUserByName(users.getUsername());
+            UsersVo usersVo = setUserRedisSessionToken(loginUser);
             loginUser.setPassword("");
-            info.setUser(loginUser);
+            info.setObj(usersVo);
+
         } else {
             info.setMsg("用户名已存在");
         }
@@ -79,12 +89,28 @@ public class RegisterLoginController {
             System.out.println("密码错误:"+user.getPassword()+"========"+loginUsers.getPassword());
             info.setMsg("密码错误");
         }else{
+            UsersVo usersVo = setUserRedisSessionToken(user);
             info.setMsg("登陆成功");
-            info.setUser(user);
+            user.setPassword("");
+            info.setObj(usersVo);
         }
         return gson.toJson(info);
+    }
 
-
+    /**
+     *
+     * @param loginUser 当前尝试登陆 / 注册的用户
+     * @return  一个带有token的vo
+     */
+    public UsersVo setUserRedisSessionToken(Users loginUser){
+        //将用户信息存入redis
+        String uniqueToken = UUID.randomUUID().toString();
+        redisOperator.set(USER_REDIS_SESSION+":"+ loginUser.getId(),uniqueToken,1000*60*30);
+        UsersVo usersVo = new UsersVo();
+        //把loginuser拷贝到vo
+        BeanUtils.copyProperties(loginUser,usersVo);
+        usersVo.setUserToken(uniqueToken);
+        return usersVo;
     }
 
 }

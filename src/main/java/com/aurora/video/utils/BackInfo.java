@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class BackInfo {
     private String msg;
-    private Users user;
+    private Object obj;
 
     public void cleanInfo(){
         this.setMsg(null);
-        this.setUser(null);
+        this.setObj(null);
     }
 
 }
