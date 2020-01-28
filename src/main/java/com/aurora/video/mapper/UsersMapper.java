@@ -5,26 +5,27 @@ import com.aurora.video.pojo.Users;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 @Repository
 public interface UsersMapper {
-    int deleteByPrimaryKey(String id);
 
-    @Insert("insert into users(username,password,face_image,nickname,fans_counts," +
-            "follow_counts,receive_like_counts) " +
+    @Insert("insert into users(username,password,faceimage,nickname,fanscounts," +
+            "followcounts,receivelikecounts) " +
             "values(#{username},#{password},#{faceImage},#{nickname},#{fansCounts},#{followCounts}," +
             "#{receiveLikeCounts})")
     int insert(Users record);
 
-    int insertSelective(Users record);
+    @Select("select * from users where id = #{id}")
+    Users selectUserByID(@Param("id") Integer id);
 
-    Users selectByPrimaryKey(String id);
 
-    int updateByPrimaryKeySelective(Users record);
 
-    int updateByPrimaryKey(Users record);
+    @Update("update users set username = #{username},faceimage = #{faceImage}," +
+            "Password=#{password},nickname=#{nickname},fanscounts=#{fansCounts}," +
+            "followcounts=#{followCounts},receivelikecounts=#{receiveLikeCounts} where id = #{id}")
+    int updateByPrimaryKey(Users user);
 
     @Select("select * from users where username = #{username}")
     Users selectOne(@Param("username") String username);

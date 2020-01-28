@@ -8,7 +8,7 @@ import lombok.ToString;
 @ApiModel(value = "用户对象")
 public class UsersVo {
     @ApiModelProperty(hidden = true)
-    private String id;
+    private Integer id;
     @ApiModelProperty(value = "用户名", name = "username", required = true, example = "张三")
     private String username;
     @ApiModelProperty(value = "用户密码", name = "password", required = true, example = "123456")
@@ -34,12 +34,12 @@ public class UsersVo {
         this.userToken = userToken;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+    public void setId(Integer id) {
+        this.id = id ;
     }
 
     public String getUsername() {

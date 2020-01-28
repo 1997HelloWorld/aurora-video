@@ -9,6 +9,7 @@ import com.aurora.video.vo.UsersVo;
 import com.google.gson.Gson;
 import io.lettuce.core.cluster.pubsub.RedisClusterPubSubAdapter;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -49,6 +50,9 @@ public class RegisterLoginController extends BasicController{
         if (!flag) {
             users.setPassword(MD5.md5(users.getPassword()));
             users.setNickname(users.getUsername());
+            users.setFansCounts(0);
+            users.setFollowCounts(0);
+            users.setReceiveLikeCounts(0);
             userService.saveUser(users);
             info.setMsg("注册成功");
 
@@ -86,10 +90,10 @@ public class RegisterLoginController extends BasicController{
         }
         String password = MD5.md5(loginUsers.getPassword());
         if (!user.getPassword().equals(password)) {
-            System.out.println("密码错误:"+user.getPassword()+"========"+loginUsers.getPassword());
             info.setMsg("密码错误");
         }else{
             UsersVo usersVo = setUserRedisSessionToken(user);
+
             info.setMsg("登陆成功");
             user.setPassword("");
             info.setObj(usersVo);
@@ -99,16 +103,39 @@ public class RegisterLoginController extends BasicController{
 
     /**
      *
+     * @param userID
+     * @return
+     */
+    @ApiOperation(value = "用户注销" ,notes = "用户注销")
+    @ApiImplicitParam(name = "userID" ,value = "用户ID" ,required = true,
+                     dataType = "application/json" ,paramType = "query")
+    @PostMapping("/logout")
+    public String logout(@RequestBody String userID){
+        info.cleanInfo();
+        redisOperator.del(USER_REDIS_SESSION+":"+userID);
+        info.setObj(USER_REDIS_SESSION+":"+userID);
+        info.setMsg("200");
+        return gson.toJson(info);
+    }
+
+
+
+
+
+    /**
+     *
      * @param loginUser 当前尝试登陆 / 注册的用户
      * @return  一个带有token的vo
      */
     public UsersVo setUserRedisSessionToken(Users loginUser){
+        System.out.println("看看有没有ID"+loginUser);
         //将用户信息存入redis
         String uniqueToken = UUID.randomUUID().toString();
         redisOperator.set(USER_REDIS_SESSION+":"+ loginUser.getId(),uniqueToken,1000*60*30);
         UsersVo usersVo = new UsersVo();
         //把loginuser拷贝到vo
         BeanUtils.copyProperties(loginUser,usersVo);
+        System.out.println(usersVo);
         usersVo.setUserToken(uniqueToken);
         return usersVo;
     }

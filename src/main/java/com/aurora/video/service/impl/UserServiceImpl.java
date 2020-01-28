@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
         String username = users.getUsername();
         Users user = usersMapper.selectOne(username);
 
-        return user == null ? false:true;
+                return user == null ? false:true;
     }
 
     @Override
@@ -31,5 +31,26 @@ public class UserServiceImpl implements UserService {
     public Users queryUserByName(String username) {
         Users user = usersMapper.selectOne(username);
         return user;
+    }
+
+    /**
+     * 通过userID查询users
+     * @param id
+     * @return
+     */
+    @Override
+    public Users queryUserByUserID(Integer id) {
+
+        Users usersFromDB = usersMapper.selectUserByID(id);
+        return usersFromDB;
+    }
+
+    @Override
+    public String updateUserInfo(Users users) {
+        int i = usersMapper.updateByPrimaryKey(users);
+        if(i==1){
+            return "200";
+        }
+        return "修改失败";
     }
 }

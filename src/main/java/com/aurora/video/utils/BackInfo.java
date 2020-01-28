@@ -10,10 +10,12 @@ import org.springframework.stereotype.Component;
 public class BackInfo {
     private String msg;
     private Object obj;
+    private String backUrl;
 
     public void cleanInfo(){
         this.setMsg(null);
         this.setObj(null);
+        this.setBackUrl(null);
     }
 
 }
