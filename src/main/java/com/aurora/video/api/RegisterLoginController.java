@@ -4,10 +4,8 @@ import com.aurora.video.pojo.Users;
 import com.aurora.video.service.impl.UserServiceImpl;
 import com.aurora.video.utils.BackInfo;
 import com.aurora.video.utils.MD5;
-import com.aurora.video.utils.RedisOperator;
 import com.aurora.video.vo.UsersVo;
 import com.google.gson.Gson;
-import io.lettuce.core.cluster.pubsub.RedisClusterPubSubAdapter;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -128,14 +126,12 @@ public class RegisterLoginController extends BasicController{
      * @return  一个带有token的vo
      */
     public UsersVo setUserRedisSessionToken(Users loginUser){
-        System.out.println("看看有没有ID"+loginUser);
         //将用户信息存入redis
         String uniqueToken = UUID.randomUUID().toString();
         redisOperator.set(USER_REDIS_SESSION+":"+ loginUser.getId(),uniqueToken,1000*60*30);
         UsersVo usersVo = new UsersVo();
         //把loginuser拷贝到vo
         BeanUtils.copyProperties(loginUser,usersVo);
-        System.out.println(usersVo);
         usersVo.setUserToken(uniqueToken);
         return usersVo;
     }

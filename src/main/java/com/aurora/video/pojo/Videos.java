@@ -1,11 +1,13 @@
 package com.aurora.video.pojo;
 
+import io.swagger.models.auth.In;
+
 import java.util.Date;
 
 public class Videos {
-    private String id;
+    private Integer id;
 
-    private String userId;
+    private Integer userId;
 
     private String audioId;
 
@@ -27,20 +29,20 @@ public class Videos {
 
     private Date createTime;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId == null ? null : userId.trim();
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getAudioId() {
@@ -48,7 +50,7 @@ public class Videos {
     }
 
     public void setAudioId(String audioId) {
-        this.audioId = audioId == null ? null : audioId.trim();
+        this.audioId = audioId ;
     }
 
     public String getVideoDesc() {
