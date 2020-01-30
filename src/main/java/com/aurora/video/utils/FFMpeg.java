@@ -144,19 +144,58 @@ public class FFMpeg {
         if(errorStream!=null){
             errorStream.close();
         }
+        System.out.println();
         System.out.println("视频合并完成");
+    }
+
+    public void screenShot(String inputVideoPath,String outputScreenPath) throws IOException {
+        System.out.println("进行截图");
+        //ffmpeg.exe -ss 00:00:01 -y  -i fish.mp4 -vframes 1 new.jpg
+        List<String> command = new ArrayList<>();
+        command.add(FFMPegEXE);
+        command.add("-ss");
+        command.add("00:00:01");
+        command.add("-y");
+        command.add("-i");
+        command.add(inputVideoPath);
+        command.add("-vframes");
+        command.add("1");
+        command.add(outputScreenPath);
+
+        for (String s:command){
+            System.out.print(s);
+            System.out.print(" ");
+        }
+
+        ProcessBuilder builder = new ProcessBuilder(command);
+        Process process = builder.start();
+        InputStream errorStream = process.getErrorStream();
+        InputStreamReader inputStreamReader = new InputStreamReader(errorStream);
+        BufferedReader br = new BufferedReader(inputStreamReader);
+        String line = "";
+        while ((line=br.readLine())!=null){
+
+        }
+        if(br!=null){
+            br.close();
+        }
+        if(inputStreamReader!=null){
+            inputStreamReader.close();
+        }
+        if(errorStream!=null){
+            errorStream.close();
+        }
+        System.out.println();
+        System.out.println("截图完毕");
     }
 
     public static void main(String[] args) {
         FFMpeg ffMpeg = new FFMpeg("D:\\ffmpeg\\bin\\ffmpeg.exe");
         try {
 
-            ffMpeg.videoSilencing("F:\\images\\video1.avi","F:\\images\\temp.avi");
 
-            ffMpeg.videoMerge("F:\\images\\temp.avi",
-                    "20",
-                    "F:\\images\\flowerSea.mp3",
-                    "F:\\images\\video2.avi");
+            ffMpeg.screenShot("E:/video_dev/1018/video/a.mp4",
+                    "E:/video_dev/1018/video/screen.jpg");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -12,4 +12,6 @@ public class BasicController {
     public static final String USER_REDIS_SESSION = "user_redis_session";
 
     public static final String FILE_MUSIC = "E:/video_music";
+
+    public static final Integer PAGE_SIZE = 5;
 }

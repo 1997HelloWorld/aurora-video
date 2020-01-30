@@ -1,28 +1,25 @@
 package com.aurora.video.api;
 
+import com.alibaba.fastjson.JSON;
 import com.aurora.video.pojo.Bgm;
 import com.aurora.video.pojo.Videos;
 import com.aurora.video.service.BgmService;
 import com.aurora.video.service.VideoService;
 import com.aurora.video.utils.BackInfo;
 import com.aurora.video.utils.FFMpeg;
+import com.aurora.video.utils.PagedResult;
 import com.google.gson.Gson;
 import io.swagger.annotations.*;
-import io.swagger.models.auth.In;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.Date;
 import java.util.UUID;
 
@@ -39,6 +36,19 @@ public class VideoController extends BasicController {
     @Autowired
     private BgmService bgmService;
 
+    /**
+     * 上传视频
+     *
+     * @param userID
+     * @param bgmID
+     * @param videoSeconds
+     * @param videoWidth
+     * @param videoHeight
+     * @param desc
+     * @param file
+     * @return
+     * @throws Exception
+     */
     @ApiOperation(value = "用户上传视频", notes = "用户上传视频接口")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "userID", value = "用户ID", required = true,
@@ -55,10 +65,10 @@ public class VideoController extends BasicController {
                     dataType = "String", paramType = "form")
     })
     @PostMapping(value = "/upload", headers = {"content-type=multipart/form-data"}, produces = "text/plain;charset=UTF-8")
-    public String uploadFace(String userID, String bgmID, float videoSeconds,
-                             int videoWidth, int videoHeight, String desc,
-                             @ApiParam(value = "短视频", required = true)
-                                     MultipartFile file) throws Exception {
+    public String uploadVideo(String userID, String bgmID, float videoSeconds,
+                              int videoWidth, int videoHeight, String desc,
+                              @ApiParam(value = "短视频", required = true)
+                                      MultipartFile file) throws Exception {
 
         info.cleanInfo();
 
@@ -118,9 +128,6 @@ public class VideoController extends BasicController {
                     //插入到数据库
                     videoService.firstInsertVideo(videos);
 
-                    System.out.println("============" + videos.getId());
-
-
                 }
             } else {
                 info.setMsg("文件上传出错");
@@ -147,17 +154,24 @@ public class VideoController extends BasicController {
             FFMpeg ffMpeg = new FFMpeg("D:/ffmpeg/bin/ffmpeg.exe");
             String tempVideoPath = filePath + "/" + userID + "/video" + "/copy_" + filename;
             //存放图片的uuid
-            String picUUID = UUID.randomUUID().toString()+".mp4";
-
+            String picUUID = UUID.randomUUID().toString() + ".mp4";
+            //消除原有音轨
             ffMpeg.videoSilencing(finalVideoPath,
                     tempVideoPath);
+            //视音合并
             ffMpeg.videoMerge(tempVideoPath, String.valueOf(videoSeconds),
                     mp3Path, filePath + "/" + userID + "/video" + "/final_" + picUUID);
+            //视屏快照
+            String screenShot = UUID.randomUUID().toString() + ".jpg";
+            ffMpeg.screenShot(filePath + "/" + userID + "/video" + "/final_" + picUUID,
+                    filePath + "/" + userID + "/video/" + screenShot);
             //更新合成视频的路径到数据库
-            videoService.updatePathByID(filePath + "/" + userID + "/video" + "/final_" + picUUID,
+            videoService.updatePathByID("/" + userID + "/video" + "/final_" + picUUID,
                     videos.getId());
 
-
+            //更新视屏快照的地址
+            videoService.updateCoverPath(videos.getId(),
+                    "/" + userID + "/video/" + screenShot);
 
         } else {
             System.out.println("该视频为原视频，不合成音频");
@@ -166,4 +180,18 @@ public class VideoController extends BasicController {
         return gson.toJson(info);
     }
 
+    @GetMapping(value = {"/showAll"})
+    public String showAll(Integer page) {
+        System.out.println("触发获取视频列表");;
+        info.cleanInfo();
+        if (page == null) {
+            page = 1;
+        }
+
+        PagedResult allVideos = videoService.getAllVideos(page, PAGE_SIZE);
+        info.setObj(allVideos);
+        return gson.toJson(info);
+    }
+
+    ;
 }

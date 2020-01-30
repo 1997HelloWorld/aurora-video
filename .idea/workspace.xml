@@ -2,29 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="925823a6-c182-4e62-bd09-22a1a6016df9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aurora/video/api/BgmController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aurora/video/api/VideoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aurora/video/service/BgmService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aurora/video/service/VideoService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aurora/video/service/impl/BgmServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aurora/video/service/impl/VideoServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aurora/video/utils/FFMpeg.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/VideosMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/aurora/video/utils/PagedResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/aurora/video/vo/VideoVo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aurora/video/VideoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aurora/video/VideoApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/aurora/video/api/BasicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aurora/video/api/BasicController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aurora/video/api/RegisterLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aurora/video/api/RegisterLoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aurora/video/mapper/BgmMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aurora/video/mapper/BgmMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aurora/video/api/VideoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aurora/video/api/VideoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/aurora/video/mapper/VideosMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aurora/video/mapper/VideosMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aurora/video/pojo/Bgm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aurora/video/pojo/Bgm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aurora/video/pojo/Videos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aurora/video/pojo/Videos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aurora/video/service/VideoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aurora/video/service/VideoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aurora/video/service/impl/VideoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aurora/video/service/impl/VideoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aurora/video/utils/FFMpeg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aurora/video/utils/FFMpeg.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/aurora/video/VideoApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/aurora/video/VideoApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/aurora/video/api/BasicController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/aurora/video/api/BasicController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/aurora/video/api/RegisterLoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/aurora/video/api/RegisterLoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/aurora/video/mapper/BgmMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/aurora/video/mapper/BgmMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/aurora/video/mapper/VideosMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/aurora/video/mapper/VideosMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/aurora/video/pojo/Bgm.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/aurora/video/pojo/Bgm.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/aurora/video/pojo/Videos.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/aurora/video/pojo/Videos.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +86,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/aurora/video/utils" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -113,6 +103,7 @@
       <recent name="com.aurora.video.vo" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\aurora\src\main\java\com\aurora\video\utils" />
       <recent name="F:\aurora\src\main\java\com\aurora\video\mapper" />
       <recent name="F:\aurora\src\main\java\com\aurora\video\pojo" />
       <recent name="F:\aurora\src\main\resources" />
@@ -124,7 +115,7 @@
       <command value="mvn install" />
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.VideoApplication">
+  <component name="RunManager" selected="Application.FFMpeg">
     <configuration name="FFMpeg" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.aurora.video.utils.FFMpeg" />
       <module name="aurora-video" />
@@ -182,7 +173,9 @@
       <workItem from="1580196565361" duration="8920000" />
       <workItem from="1580207259487" duration="12091000" />
       <workItem from="1580256024686" duration="32680000" />
-      <workItem from="1580351116423" duration="3442000" />
+      <workItem from="1580351116423" duration="4203000" />
+      <workItem from="1580356815245" duration="1880000" />
+      <workItem from="1580358743816" duration="16929000" />
     </task>
     <task id="LOCAL-00001" summary="整合redis，做无状态session">
       <created>1580139070752</created>
@@ -198,34 +191,55 @@
       <option name="project" value="LOCAL" />
       <updated>1580221130636</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="视频上传，合并音频">
+      <created>1580354689239</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1580354689239</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="第一次提交" />
     <MESSAGE value="整合redis，做无状态session" />
-    <option name="LAST_COMMIT_MESSAGE" value="整合redis，做无状态session" />
+    <MESSAGE value="视频上传，合并音频" />
+    <option name="LAST_COMMIT_MESSAGE" value="视频上传，合并音频" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="71" key="#Notifications" timestamp="1580129612011">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="71" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1580129612011" />
-    <state x="361" y="71" key="#Project_Structure" timestamp="1580138541903">
+    <state x="361" y="71" key="#Project_Structure" timestamp="1580358683490">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="71" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1580138541903" />
-    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1580305680614">
+    <state x="361" y="71" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1580358683490" />
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1580381781386">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1580305680614" />
-    <state x="262" y="3" key="CommitChangelistDialog2" timestamp="1580354603470">
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1580381781386" />
+    <state x="262" y="3" key="CommitChangelistDialog2" timestamp="1580391639537">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="262" y="3" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580354603470" />
+    <state x="262" y="3" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580391639537" />
     <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1580130936773">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -242,38 +256,38 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="582" y="114" key="Github.UntrackedFilesDialog/0.0.1536.824@0.0.1536.824" timestamp="1580131737032" />
-    <state width="1478" height="208" key="GridCell.Tab.0.bottom" timestamp="1580354603595">
+    <state width="1478" height="208" key="GridCell.Tab.0.bottom" timestamp="1580391639628">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1478" height="208" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580354603595" />
-    <state width="1478" height="208" key="GridCell.Tab.0.center" timestamp="1580354603595">
+    <state width="1478" height="208" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580391639628" />
+    <state width="1478" height="208" key="GridCell.Tab.0.center" timestamp="1580391639627">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1478" height="208" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1580354603595" />
-    <state width="1478" height="208" key="GridCell.Tab.0.left" timestamp="1580354603595">
+    <state width="1478" height="208" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1580391639627" />
+    <state width="1478" height="208" key="GridCell.Tab.0.left" timestamp="1580391639627">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1478" height="208" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1580354603595" />
-    <state width="1478" height="208" key="GridCell.Tab.0.right" timestamp="1580354603595">
+    <state width="1478" height="208" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1580391639627" />
+    <state width="1478" height="208" key="GridCell.Tab.0.right" timestamp="1580391639628">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1478" height="208" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1580354603595" />
-    <state width="1478" height="208" key="GridCell.Tab.1.bottom" timestamp="1580354603608">
+    <state width="1478" height="208" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1580391639628" />
+    <state width="1478" height="208" key="GridCell.Tab.1.bottom" timestamp="1580391639628">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1478" height="208" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580354603608" />
-    <state width="1478" height="208" key="GridCell.Tab.1.center" timestamp="1580354603608">
+    <state width="1478" height="208" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580391639628" />
+    <state width="1478" height="208" key="GridCell.Tab.1.center" timestamp="1580391639628">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1478" height="208" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1580354603608" />
-    <state width="1478" height="208" key="GridCell.Tab.1.left" timestamp="1580354603608">
+    <state width="1478" height="208" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1580391639628" />
+    <state width="1478" height="208" key="GridCell.Tab.1.left" timestamp="1580391639628">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1478" height="208" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1580354603608" />
-    <state width="1478" height="208" key="GridCell.Tab.1.right" timestamp="1580354603608">
+    <state width="1478" height="208" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1580391639628" />
+    <state width="1478" height="208" key="GridCell.Tab.1.right" timestamp="1580391639628">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1478" height="208" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1580354603608" />
+    <state width="1478" height="208" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1580391639628" />
     <state width="1478" height="258" key="GridCell.Tab.2.bottom" timestamp="1580196529092">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -298,10 +312,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="270" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1580131413693" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1580221254568">
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1580354741472">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1580221254568" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1580354741472" />
     <state x="540" y="131" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1580187732232">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -326,10 +340,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="425" y="189" width="672" height="677" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1580286420128" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1580217149063">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1580384639221">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1580217149063" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1580384639221" />
     <state x="599" y="204" key="svn.repositoryBrowser" timestamp="1580130001362">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
