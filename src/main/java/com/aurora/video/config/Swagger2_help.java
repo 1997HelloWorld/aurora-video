@@ -13,4 +13,6 @@ public class Swagger2_help extends WebMvcConfigurationSupport {
                 .addResourceLocations("classpath:/META-INF/resources/")
                 .addResourceLocations("file:E:/video_dev/");
     }
+
+
 }

@@ -21,6 +21,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -180,18 +181,85 @@ public class VideoController extends BasicController {
         return gson.toJson(info);
     }
 
-    @GetMapping(value = {"/showAll"})
-    public String showAll(Integer page) {
-        System.out.println("触发获取视频列表");;
+    /**
+     * @param
+     * @param isSaveRecord 1:保存热搜词，0或空，不保存
+     * @param page         需要查询的页数
+     * @return
+     *
+     *
+     *
+     *
+     *
+     *
+     */
+    @GetMapping(value = {"/showAll"},produces = "text/plain;charset=UTF-8")
+    public String showAll(String videoDesc, Integer isSaveRecord, Integer page) {
+        System.out.println("触发获取视频列表");
         info.cleanInfo();
+
         if (page == null) {
             page = 1;
         }
+        PagedResult allVideos = videoService.getAllVideos(videoDesc, isSaveRecord,page, PAGE_SIZE);
 
-        PagedResult allVideos = videoService.getAllVideos(page, PAGE_SIZE);
         info.setObj(allVideos);
         return gson.toJson(info);
     }
+    @GetMapping(value = {"/getHot"},produces = "text/plain;charset=UTF-8")
+   public String getHot(){
+        info.cleanInfo();
+        List<String> hotWords = videoService.getHotWords();
+        info.setObj(hotWords);
+        return  gson.toJson(info);
+    }
 
-    ;
+
+    @PostMapping(value="/userLike")
+    public String userLike(String userID,String videoID,String videoCreaterID){
+        System.out.println(userID+"==="+videoID+"=="+videoCreaterID);
+        info.cleanInfo();
+        Integer userid = Integer.valueOf(userID);
+        Integer videoid = Integer.valueOf(videoID);
+        Integer videocreaterid = Integer.valueOf(videoCreaterID);
+        videoService.userLikeVideo(userid,videoid,videocreaterid);
+        info.setMsg("200");
+        return gson.toJson(info);
+    }
+
+    @PostMapping("/userUnLike")
+    public String userUnLike(int userID,int videoID,int videoCreaterID){
+        info.cleanInfo();
+        videoService.userUnLikeVideo(userID,videoID,videoCreaterID);
+        info.setMsg("200");
+        return gson.toJson(info);
+    }
+
+    @PostMapping(value = "/showMyLike",produces = "text/plain;charset=UTF-8")
+    public String showMyLike(Integer userId,Integer page,Integer pageSize){
+        info.cleanInfo();
+
+        if (page == null) {
+            page = 1;
+        }
+        PagedResult myLikeVideos = videoService.getMyLikeVideoList(userId,page,pageSize);
+
+        info.setObj(myLikeVideos);
+        return gson.toJson(info);
+    }
+
+    @PostMapping(value = "/showMyVideo",produces = "text/plain;charset=UTF-8")
+    public String showMyVideo(Integer userId,Integer page,Integer pageSize){
+        info.cleanInfo();
+
+        if (page == null) {
+            page = 1;
+        }
+        PagedResult myVideos = videoService.getMyVideoList(userId,page,pageSize);
+
+        info.setObj(myVideos);
+        return gson.toJson(info);
+    }
+
+
 }

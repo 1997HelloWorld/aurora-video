@@ -2,7 +2,10 @@ package com.aurora.video.service;
 
 import com.aurora.video.pojo.Videos;
 import com.aurora.video.utils.PagedResult;
+import com.aurora.video.vo.VideoVo;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public interface VideoService {
@@ -19,6 +22,20 @@ public interface VideoService {
      * @param pageSize   页面数据量
      * @return
      */
-    PagedResult getAllVideos(Integer page,Integer pageSize);
+    PagedResult getAllVideos(String videoDesc, Integer isSaveRecord,Integer page,Integer pageSize);
+
+
+    List<String> getHotWords();
+
+
+    void userLikeVideo(int userID,int videoID,int videoCreaterID);
+    void userUnLikeVideo(int userID,int videoID,int videoCreaterID);
+
+
+    public boolean isUserLikeVideo(Integer userID,Integer videoID);
+
+    public PagedResult getMyVideoList(Integer userid,Integer page ,Integer pageSize);
+
+    public PagedResult getMyLikeVideoList(Integer userid,Integer page ,Integer pageSize);
 
 }

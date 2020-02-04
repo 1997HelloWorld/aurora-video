@@ -2,7 +2,9 @@ package com.aurora.video.api;
 
 import com.aurora.video.pojo.Users;
 import com.aurora.video.service.UserService;
+import com.aurora.video.service.VideoService;
 import com.aurora.video.utils.BackInfo;
+import com.aurora.video.vo.PublisherVo;
 import com.aurora.video.vo.UsersVo;
 import com.google.gson.Gson;
 import io.swagger.annotations.Api;
@@ -11,10 +13,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
@@ -29,6 +28,8 @@ public class UserController extends BasicController {
     private UserService userService;
     @Autowired
     private BackInfo info;
+    @Autowired
+    private VideoService videoService;
 
     @ApiOperation(value = "用户上传头像", notes = "用户上传头像接口")
     @RequestMapping(value = "/uploadFace",produces = "text/plain;charset=UTF-8")
@@ -120,4 +121,31 @@ public class UserController extends BasicController {
         info.setObj(usersVo);
         return gson.toJson(info);
     }
+
+    @PostMapping(value = "/publish",produces = "text/plain;charset=UTF-8")
+    public String queryPublisher(Integer loginUserID,Integer videoID,Integer publishUserID){
+        System.out.println("publish被请求");
+        System.out.println(loginUserID+"=="+videoID+"=="+publishUserID);
+        info.cleanInfo();
+        if(publishUserID==null){
+            System.out.println("在这里被打回");
+            return "";
+        }
+
+        //查询视频发布者的信息
+        Users publisher = userService.queryUserByUserID(publishUserID);
+        //查询当前登录者和视频的点赞关系
+        boolean userLikeVideo = videoService.isUserLikeVideo(loginUserID, videoID);
+
+        PublisherVo publisherVo = new PublisherVo();
+        publisherVo.setPublisher(publisher);
+        publisherVo.setUserLikeVideo(userLikeVideo);
+        System.out.println(publisherVo);
+        info.setObj(publisherVo);
+        return gson.toJson(info);
+
+
+    }
+
+
 }

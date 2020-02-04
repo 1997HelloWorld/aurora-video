@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.apache.zookeeper.data.Id;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -29,5 +30,12 @@ public interface UsersMapper {
 
     @Select("select * from users where username = #{username}")
     Users selectOne(@Param("username") String username);
+
+    @Update("update users set receivelikecounts = receivelikecounts + 1 where id = #{id} ")
+    void addReceiveLikeCount(int id);
+
+    @Update("update users set receivelikecounts = receivelikecounts - 1 where id = #{id} ")
+    void reduceReceiveLikeCount(int id);
+
 
 }
